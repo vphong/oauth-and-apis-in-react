@@ -32,14 +32,14 @@ export function itemsFetchDataSuccess(items) {
 export function errorAfterFiveSeconds() {
   return (dispatch) => {
     setTimeout(() => {
-      dispatch(itemHasErrored(true));
+      dispatch(itemsHasErrored(true));
     }, 5000);
   };
 }
 
 export function itemsFetchData(url) {
   return (dispatch) => {
-    dispatch(itemIsLoading(true));
+    dispatch(itemsIsLoading(true));
 
     fetch(url)
       .then((response) => {
@@ -47,12 +47,12 @@ export function itemsFetchData(url) {
           throw Error(response.statusText);
         }
 
-        dispatch(itemIsLoading(false));
+        dispatch(itemsIsLoading(false));
 
         return response;
       })
       .then((response) => response.json())
       .then((items) => dispatch(itemsFetchDataSuccess(items)))
-      .catch(dispatch(itemHasErrored(true)));
+      .catch(dispatch(itemsHasErrored(true)));
   };
 }
