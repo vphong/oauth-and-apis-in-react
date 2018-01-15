@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { itemsFetchData } from '../actions/items';
+import config from '../config.json'
+
+var url = "https://api.nasa.gov/planetary/apod?api_key=" + config.NASA_API_KEY;
 
 class ItemList extends Component {
 
   componentDidMount() {
-    this.props.fetchData('http://5826ed963900d612000138bd.mockapi.io/items');
+    console.log("Fetching " + url);
+    this.props.fetchData(url);
   }
 
   render() {
