@@ -43,6 +43,8 @@ export function itemsFetchData(url) {
 
     fetch(url)
       .then((response) => {
+        // parse the initial abstract response
+
         if (!response.ok) {
           throw Error(response.statusText);
         }
@@ -51,8 +53,14 @@ export function itemsFetchData(url) {
 
         return response;
       })
+      // json-ify the actual API data in the response
       .then((response) => response.json())
-      .then((items) => dispatch(itemsFetchDataSuccess(items)))
+      // use the data
+      .then((data) => {
+        console.log(data);
+        dispatch(itemsFetchDataSuccess(data));
+        dispatch(itemsHasErrored(false));
+      })
       .catch(dispatch(itemsHasErrored(true)));
   };
 }
