@@ -5,9 +5,10 @@ import registerServiceWorker from './registerServiceWorker';
 
 import './App.css';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import AppBar from 'material-ui/AppBar';
+// import AppBar from 'material-ui/AppBar';
 import Paper from 'material-ui/Paper';
 
+import AppMenuBar from './components/AppMenuBar'
 import ItemList from './components/ItemList'
 import { Provider } from 'react-redux';
 import configureStore from './store/configureStore';
@@ -17,14 +18,14 @@ const store = configureStore();
 ReactDOM.render(
 
   <MuiThemeProvider>
-    <AppBar title="Playing with React, Redux, OAuth, and APIs"/>
-    <div>
-    <Paper zDepth={1}>
-      <Provider store={store}>
-        <ItemList />
-      </Provider>
-    </Paper>
-    </div>
+      <AppMenuBar/>
+      <div>
+        <Provider store={store}>
+      <Paper zDepth={1}>
+          <ItemList />
+      </Paper>
+    </Provider>
+      </div>
   </MuiThemeProvider>
   ,
   document.getElementById('root')
